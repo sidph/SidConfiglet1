@@ -1,0 +1,50 @@
+{
+    "name": "qa",
+    "propertyName": "qa.SidConfiglet1",
+    "propertyId": 474409,
+    "latestVersionInfo": {
+        "propertyVersion": 1,
+        "updatedByUser": "sfje2iizbg6zxz36",
+        "updatedDate": "2018-07-17T15:02:25Z",
+        "productionStatus": "ACTIVE",
+        "stagingStatus": "INACTIVE",
+        "etag": "a902d73b11915b0e4d41ca95f4281ec905c1bb80",
+        "productId": "SPM",
+        "ruleFormat": "v2018-02-27"
+    },
+    "suggestedRuleFormat": "v2018-02-27",
+    "environmentHash": "c2f8c7bbd42329c80c2f48e1cfbf34eff2ad1df5c274a08c57fcbfec12841b85",
+    "ruleTreeHash": "9eb79343250c9b2bcbd8fc3193a084abe2346d8ef0a2a2f06e313a7b5ec5d599",
+    "lastSavedHash": "c2f8c7bbd42329c80c2f48e1cfbf34eff2ad1df5c274a08c57fcbfec12841b85",
+    "lastValidatedHash": "c2f8c7bbd42329c80c2f48e1cfbf34eff2ad1df5c274a08c57fcbfec12841b85",
+    "lastSaveWarnings": [
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.ssl_delegate_warning_intro",
+            "errorLocation": "#/rules/behaviors/6",
+            "detail": "Akamai enhanced the `Origin Server` behavior. Before configuring any settings, click the <strong>Verification Settings</strong> drop-down menu and read the context-sensitive information that appears."
+        },
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.ssl_delegate_warning_rotate",
+            "errorLocation": "#/rules/behaviors/6",
+            "detail": "When rotating your origin's certificate, change your setting in the `Origin Server` behavior from <strong>Use Platform Settings</strong> to <strong>Choose Your Own</strong> and ensure both your old and new certificates are trusted. Your new certificate must be trusted <strong>before</strong> you start using it. You must continue to trust your old certificate until you have started using the new certificate. Failure to follow <a href=\"/dl/rd/propmgr/PropMgr_CSH.htm#1090\" target=\"_blank\">this procedure</a> may result in a service outage or a security breach. It is recommended that you contact your account team with any questions or concerns <strong>before</strong> activating your property."
+        },
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.onlyonedge",
+            "errorLocation": "#/rules/children/4/criteria/0",
+            "detail": "The behaviors and matches enclosed within a `User Location Data` match will only be executed by the Akamai edge server that receives the client request. If the request is forwarded to another Akamai server, the matches and behaviors enclosed will be ignored. If you are unsure about how this will affect your property please contact your Akamai Technical representative."
+        }
+    ],
+    "lastSaveErrors": [],
+    "lastSaveHostnameErrors": [],
+    "lastSavedHostnamesHash": "72062e64bd43f4fbcc959c2406afaf1b47768404a52212899de8edf51191ea6a",
+    "activeIn_PRODUCTION_Info": {
+        "propertyVersion": 1,
+        "updatedByUser": "sfje2iizbg6zxz36",
+        "updatedDate": "2018-07-17T15:02:25Z",
+        "productionStatus": "ACTIVE",
+        "stagingStatus": "INACTIVE",
+        "etag": "a902d73b11915b0e4d41ca95f4281ec905c1bb80",
+        "productId": "SPM",
+        "ruleFormat": "v2018-02-27"
+    }
+}

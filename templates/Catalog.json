@@ -1,0 +1,25 @@
+{
+    "name": "New Rule",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "timeout",
+            "options": {
+                "value": "5s"
+            }
+        }
+    ],
+    "criteria": [
+        {
+            "name": "path",
+            "options": {
+                "matchOperator": "MATCHES_ONE_OF",
+                "values": [
+                    "/catalog/*"
+                ],
+                "matchCaseSensitive": false
+            }
+        }
+    ],
+    "criteriaMustSatisfy": "all"
+}

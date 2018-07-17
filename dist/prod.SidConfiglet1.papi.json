@@ -1,0 +1,499 @@
+    "rules": {
+{
+        "name": "default",
+        "children": [
+            {
+                "name": "Enable HTTP2",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "http2",
+                        "options": {
+                            "enabled": ""
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "hostname",
+                        "options": {
+                            "matchOperator": "IS_ONE_OF",
+                            "values": [
+                                "www.sids-taqueria.com"
+                            ]
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "Compressible Objects",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "gzipResponse",
+                        "options": {
+                            "behavior": "ALWAYS"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "contentType",
+                        "options": {
+                            "matchCaseSensitive": false,
+                            "matchOperator": "IS_ONE_OF",
+                            "matchWildcard": true,
+                            "values": [
+                                "text/*",
+                                "application/javascript",
+                                "application/x-javascript",
+                                "application/x-javascript*",
+                                "application/json",
+                                "application/x-json",
+                                "application/*+json",
+                                "application/*+xml",
+                                "application/text",
+                                "application/vnd.microsoft.icon",
+                                "application/vnd-ms-fontobject",
+                                "application/x-font-ttf",
+                                "application/x-font-opentype",
+                                "application/x-font-truetype",
+                                "application/xmlfont/eot",
+                                "application/xml",
+                                "font/opentype",
+                                "font/otf",
+                                "font/eot",
+                                "image/svg+xml",
+                                "image/vnd.microsoft.icon"
+                            ]
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all",
+                "comments": "Compresses content to improve performance of clients with slow connections.  Applies Last Mile Acceleration to requests when the returned object supports gzip compression."
+            },
+            {
+                "name": "Cache extensions",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "caching",
+                        "options": {
+                            "behavior": "MAX_AGE",
+                            "ttl": "1m",
+                            "mustRevalidate": false
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "fileExtension",
+                        "options": {
+                            "matchCaseSensitive": false,
+                            "matchOperator": "IS_ONE_OF",
+                            "values": [
+                                "aif",
+                                "aiff",
+                                "au",
+                                "avi",
+                                "bin",
+                                "bmp",
+                                "cab",
+                                "carb",
+                                "cct",
+                                "cdf",
+                                "class",
+                                "css",
+                                "doc",
+                                "dcr",
+                                "dtd",
+                                "exe",
+                                "flv",
+                                "gcf",
+                                "gff",
+                                "gif",
+                                "grv",
+                                "hdml",
+                                "hqx",
+                                "ico",
+                                "ini",
+                                "jpeg",
+                                "jpg",
+                                "js",
+                                "mov",
+                                "mp3",
+                                "nc",
+                                "pct",
+                                "pdf",
+                                "png",
+                                "ppc",
+                                "pws",
+                                "swa",
+                                "swf",
+                                "txt",
+                                "vbs",
+                                "w32",
+                                "wav",
+                                "wbmp",
+                                "wml",
+                                "wmlc",
+                                "wmls",
+                                "wmlsc",
+                                "xsd",
+                                "zip",
+                                "pict",
+                                "tif",
+                                "tiff",
+                                "mid",
+                                "midi",
+                                "ttf",
+                                "eot",
+                                "woff",
+                                "woff2",
+                                "otf",
+                                "svg",
+                                "svgz",
+                                "webp",
+                                "jxr",
+                                "jar",
+                                "jp2"
+                            ]
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "New Rule",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "timeout",
+                        "options": {
+                            "value": "5s"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "path",
+                        "options": {
+                            "matchOperator": "MATCHES_ONE_OF",
+                            "values": [
+                                "/catalog/*"
+                            ],
+                            "matchCaseSensitive": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "Redirect Based on Location",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "redirect",
+                        "options": {
+                            "queryString": "APPEND",
+                            "responseCode": 302,
+                            "destinationHostname": "SAME_AS_REQUEST",
+                            "destinationPath": "OTHER",
+                            "destinationProtocol": "SAME_AS_REQUEST",
+                            "mobileDefaultChoice": "DEFAULT",
+                            "destinationPathOther": "/example/blah"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "userLocation",
+                        "options": {
+                            "field": "CONTINENT",
+                            "checkIps": "BOTH",
+                            "continentValues": [
+                                "OT"
+                            ],
+                            "matchOperator": "IS_ONE_OF",
+                            "useOnlyFirstXForwardedForIp": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all",
+                "comments": ""
+            },
+            {
+                "name": "Redirect to HTTPS",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "redirect",
+                        "options": {
+                            "queryString": "APPEND",
+                            "responseCode": 301,
+                            "destinationHostname": "SAME_AS_REQUEST",
+                            "destinationPath": "SAME_AS_REQUEST",
+                            "destinationProtocol": "HTTPS",
+                            "mobileDefaultChoice": "DEFAULT"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "requestProtocol",
+                        "options": {
+                            "value": "HTTP"
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all",
+                "comments": "Redirect to the same URL on HTTPS protocol, issuing a 301 response code (Moved Permanently). You may change the response code to 302 if needed."
+            },
+            {
+                "name": "Pricing",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "caching",
+                        "options": {
+                            "behavior": "MAX_AGE",
+                            "mustRevalidate": false,
+                            "ttl": "20m"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "path",
+                        "options": {
+                            "matchOperator": "MATCHES_ONE_OF",
+                            "values": [
+                                "/japan/*"
+                            ],
+                            "matchCaseSensitive": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "Pricing",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "caching",
+                        "options": {
+                            "behavior": "MAX_AGE",
+                            "mustRevalidate": false,
+                            "ttl": "5m"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "path",
+                        "options": {
+                            "matchOperator": "MATCHES_ONE_OF",
+                            "values": [
+                                "/pricing/*"
+                            ],
+                            "matchCaseSensitive": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "Pricing",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "caching",
+                        "options": {
+                            "behavior": "MAX_AGE",
+                            "mustRevalidate": false,
+                            "ttl": "1s"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "path",
+                        "options": {
+                            "matchOperator": "MATCHES_ONE_OF",
+                            "values": [
+                                "/sid/*"
+                            ],
+                            "matchCaseSensitive": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            },
+            {
+                "name": "Shoes",
+                "children": [],
+                "behaviors": [
+                    {
+                        "name": "caching",
+                        "options": {
+                            "behavior": "NO_STORE"
+                        }
+                    }
+                ],
+                "criteria": [
+                    {
+                        "name": "path",
+                        "options": {
+                            "matchOperator": "MATCHES_ONE_OF",
+                            "values": [
+                                "/shoes/*"
+                            ],
+                            "matchCaseSensitive": false
+                        }
+                    }
+                ],
+                "criteriaMustSatisfy": "all"
+            }
+        ],
+        "behaviors": [
+            {
+                "name": "cpCode",
+                "options": {
+                    "value": {
+                        "id": 585931
+                    }
+                }
+            },
+            {
+                "name": "allowPost",
+                "options": {
+                    "enabled": true,
+                    "allowWithoutContentLength": false
+                }
+            },
+            {
+                "name": "allowDelete",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "allowPatch",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "allowPut",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "dnsAsyncRefresh",
+                "options": {
+                    "enabled": true,
+                    "timeout": "2h"
+                }
+            },
+            {
+                "name": "origin",
+                "options": {
+                    "cacheKeyHostname": "REQUEST_HOST_HEADER",
+                    "compress": true,
+                    "enableTrueClientIp": true,
+                    "trueClientIpHeader": "True-Client-IP",
+                    "trueClientIpClientSetting": false,
+                    "forwardHostHeader": "CUSTOM",
+                    "customForwardHostHeader": "www.sids-taqueria.com",
+                    "hostname": "www.sids-taqueria.com",
+                    "httpPort": 80,
+                    "originType": "CUSTOMER",
+                    "verificationMode": "PLATFORM_SETTINGS",
+                    "httpsPort": 443,
+                    "originSni": true,
+                    "originCertificate": "",
+                    "ports": ""
+                }
+            },
+            {
+                "name": "sureRoute",
+                "options": {
+                    "enabled": true,
+                    "type": "PERFORMANCE",
+                    "testObjectUrl": "/akamai/sure-route-test-object.html",
+                    "forceSslForward": false,
+                    "enableCustomKey": false,
+                    "raceStatTtl": "86400s",
+                    "toHostStatus": "INCOMING_HH"
+                }
+            },
+            {
+                "name": "frontEndOptimization",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "realUserMonitoring",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "edgeScape",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "tieredDistribution",
+                "options": {
+                    "enabled": true
+                }
+            },
+            {
+                "name": "caching",
+                "options": {
+                    "behavior": "NO_STORE"
+                }
+            },
+            {
+                "name": "cacheKeyQueryParams",
+                "options": {
+                    "behavior": "INCLUDE_ALL_PRESERVE_ORDER"
+                }
+            },
+            {
+                "name": "cacheRedirect",
+                "options": {
+                    "enabled": "false"
+                }
+            },
+            {
+                "name": "cacheError",
+                "options": {
+                    "enabled": true,
+                    "ttl": "10s",
+                    "preserveStale": true
+                }
+            },
+            {
+                "name": "downstreamCache",
+                "options": {
+                    "behavior": "ALLOW",
+                    "allowBehavior": "LESSER",
+                    "sendHeaders": "CACHE_CONTROL_AND_EXPIRES",
+                    "sendPrivate": false
+                }
+            }
+        ],
+        "options": {
+            "is_secure": true
+        },
+        "variables": [],
+        "comments": "The behaviors in the Default Rule apply to all requests for the property hostname(s) unless another rule overrides the Default Rule settings."
+    }
+}

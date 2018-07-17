@@ -1,0 +1,34 @@
+{
+    "name": "Redirect Based on Location",
+    "children": [],
+    "behaviors": [
+        {
+            "name": "redirect",
+            "options": {
+                "queryString": "APPEND",
+                "responseCode": 302,
+                "destinationHostname": "SAME_AS_REQUEST",
+                "destinationPath": "OTHER",
+                "destinationProtocol": "SAME_AS_REQUEST",
+                "mobileDefaultChoice": "DEFAULT",
+                "destinationPathOther": "/example/blah"
+            }
+        }
+    ],
+    "criteria": [
+        {
+            "name": "userLocation",
+            "options": {
+                "field": "CONTINENT",
+                "checkIps": "BOTH",
+                "continentValues": [
+                    "OT"
+                ],
+                "matchOperator": "IS_ONE_OF",
+                "useOnlyFirstXForwardedForIp": false
+            }
+        }
+    ],
+    "criteriaMustSatisfy": "all",
+    "comments": ""
+}

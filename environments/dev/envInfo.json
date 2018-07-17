@@ -1,0 +1,58 @@
+{
+    "name": "dev",
+    "propertyName": "dev.SidConfiglet1",
+    "propertyId": 474408,
+    "latestVersionInfo": {
+        "propertyVersion": 2,
+        "updatedByUser": "sfje2iizbg6zxz36",
+        "updatedDate": "2018-07-17T20:13:45Z",
+        "productionStatus": "PENDING",
+        "stagingStatus": "INACTIVE",
+        "etag": "6a2ac968e79c18c1c6081d233361c36d814818ce",
+        "productId": "SPM",
+        "ruleFormat": "v2018-02-27"
+    },
+    "suggestedRuleFormat": "v2018-02-27",
+    "environmentHash": "89915e4c59b2ab3a60bea306f945e70415d3daa527476521951de2d264ca6078",
+    "ruleTreeHash": "d510329f3da8ad15dd2b560e9ea84eea607b4ee89c7df071bd832eb203048f0e",
+    "lastSavedHash": "89915e4c59b2ab3a60bea306f945e70415d3daa527476521951de2d264ca6078",
+    "lastValidatedHash": "89915e4c59b2ab3a60bea306f945e70415d3daa527476521951de2d264ca6078",
+    "lastSaveWarnings": [
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.ssl_delegate_warning_intro",
+            "errorLocation": "#/rules/behaviors/6",
+            "detail": "Akamai enhanced the `Origin Server` behavior. Before configuring any settings, click the <strong>Verification Settings</strong> drop-down menu and read the context-sensitive information that appears."
+        },
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.ssl_delegate_warning_rotate",
+            "errorLocation": "#/rules/behaviors/6",
+            "detail": "When rotating your origin's certificate, change your setting in the `Origin Server` behavior from <strong>Use Platform Settings</strong> to <strong>Choose Your Own</strong> and ensure both your old and new certificates are trusted. Your new certificate must be trusted <strong>before</strong> you start using it. You must continue to trust your old certificate until you have started using the new certificate. Failure to follow <a href=\"/dl/rd/propmgr/PropMgr_CSH.htm#1090\" target=\"_blank\">this procedure</a> may result in a service outage or a security breach. It is recommended that you contact your account team with any questions or concerns <strong>before</strong> activating your property."
+        },
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/generic_behavior_issue.enabletransferencoding_warning",
+            "errorLocation": "#/rules/children/0/behaviors/0",
+            "detail": "HTTP/2 can make use of Chunked Transfer Encoding (CTE). To ensure that requests using CTE are not denied, set the Chunked Transfer Encoding behavior to \"Allow\" and enable CTE on your origin."
+        },
+        {
+            "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.onlyonedge",
+            "errorLocation": "#/rules/children/4/criteria/0",
+            "detail": "The behaviors and matches enclosed within a `User Location Data` match will only be executed by the Akamai edge server that receives the client request. If the request is forwarded to another Akamai server, the matches and behaviors enclosed will be ignored. If you are unsure about how this will affect your property please contact your Akamai Technical representative."
+        }
+    ],
+    "lastSaveErrors": [],
+    "lastSaveHostnameErrors": [],
+    "lastSavedHostnamesHash": "3caafcb59def2bbd6a8c5fd6626faa029237eb096ee78df0c497b6ecfd7b7f0f",
+    "activeIn_PRODUCTION_Info": {
+        "propertyVersion": 1,
+        "updatedByUser": "sfje2iizbg6zxz36",
+        "updatedDate": "2018-07-17T13:47:09Z",
+        "productionStatus": "ACTIVE",
+        "stagingStatus": "INACTIVE",
+        "etag": "3f93e0fb9fbbe2a5e204df8f3790e42cdce3e127",
+        "productId": "SPM",
+        "ruleFormat": "v2018-02-27"
+    },
+    "pendingActivations": {
+        "PRODUCTION": 6101077
+    }
+}

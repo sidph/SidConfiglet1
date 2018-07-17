@@ -1,0 +1,8 @@
+[
+    {
+        "cnameFrom": "prod.SidConfiglet1",
+        "cnameTo": "prod.SidConfiglet1.edgesuite.net",
+        "cnameType": "EDGE_HOSTNAME",
+        "edgeHostnameId": 3088099
+    }
+]

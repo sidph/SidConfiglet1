@@ -1,0 +1,16 @@
+{
+    "definitions": {
+        "cpCode": {
+            "type": "cpCode",
+            "default": 585931
+        },
+        "originHostname": {
+            "type": "hostname",
+            "default": null
+        },
+        "sureRouteTestObject": {
+            "type": "url",
+            "default": "/akamai/sure-route-test-object.html"
+        }
+    }
+}
